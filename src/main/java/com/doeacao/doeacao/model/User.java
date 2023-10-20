@@ -33,7 +33,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "tb_users")
 public class User {
 	
 	

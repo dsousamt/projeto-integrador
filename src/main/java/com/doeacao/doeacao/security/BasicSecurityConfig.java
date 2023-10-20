@@ -74,19 +74,5 @@ public class BasicSecurityConfig {
 	        return http.build();
 
 	    }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
+

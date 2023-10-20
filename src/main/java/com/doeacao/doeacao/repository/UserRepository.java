@@ -11,6 +11,6 @@ import com.doeacao.doeacao.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 	
-	public Optional<User> findByUser(@Param("user") String user);
+	public Optional<User> findByUser(String user);
 
 }

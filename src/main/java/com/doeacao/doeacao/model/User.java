@@ -40,14 +40,12 @@ public class User {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotBlank (message = "O atributo name é obrigatório!")
-	@Size (min=2, max =255, message = "O atributo name deve conter no mínimo 2 e no máximo 255 catacteres!")
+
+	@NotNull(message = "O Atributo Nome é Obrigatório!")
 	private String name;
-	
-	@Schema(example = "email@email.com.br")
-	@NotBlank (message = "O atributo email é obrigatório!")
-	@Email
+
+	@NotNull(message = "O Atributo Usuário é Obrigatório!")
+	@Email(message = "O Atributo Usuário deve ser um email válido!")
 	private String user;
 	
 	@CPF
@@ -55,14 +53,14 @@ public class User {
 	
 	@CNPJ
 	private String cnpj;
-	
-	@NotBlank (message = "O atributo password é obrigatório!")
+
+	@NotBlank(message = "O Atributo Senha é Obrigatório!")
+	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
 	private String password;
-	
-	@Size (min=5, max =5000, message = "O atributo pic deve conter no mínimo 5 e no máximo 5000 catacteres!")
+
+	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String pic;
 	
-	@NotNull
 	private LocalDate birthDate;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)

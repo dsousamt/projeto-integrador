@@ -24,7 +24,7 @@ public class BasicSecurityConfig {
 	
 	
 	@Autowired
-	public JwtAuthFilter authFilter;
+	private JwtAuthFilter authFilter;
 	
 	
 	@Bean

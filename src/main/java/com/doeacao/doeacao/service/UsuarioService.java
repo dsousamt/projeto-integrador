@@ -1,8 +1,8 @@
 package com.doeacao.doeacao.service;
 
-import com.doeacao.doeacao.model.User;
-import com.doeacao.doeacao.model.UserLogin;
-import com.doeacao.doeacao.repository.UserRepository;
+import com.doeacao.doeacao.model.Usuario;
+import com.doeacao.doeacao.model.UsuarioLogin;
+import com.doeacao.doeacao.repository.UsuarioRepository;
 import com.doeacao.doeacao.security.JwtService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UsuarioService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     private JwtService jwtService;
@@ -27,29 +27,29 @@ public class UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    public Optional<User> registerUser(User user) {
+    public Optional<Usuario> registerUser(Usuario usuario) {
 
-        if (userRepository.findByUser(user.getUser()).isPresent())
+        if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
             return Optional.empty();
 
-        user.setPassword(encryptPassword(user.getPassword()));
+        usuario.setSenha(encryptPassword(usuario.getSenha()));
 
-        return Optional.of(userRepository.save(user));
+        return Optional.of(usuarioRepository.save(usuario));
 
     }
 
-    public Optional<User> updateUser(User user) {
+    public Optional<Usuario> updateUser(Usuario usuario) {
 
-        if(userRepository.findById(user.getId()).isPresent()) {
+        if(usuarioRepository.findById(usuario.getId()).isPresent()) {
 
-            Optional<User> searchUser = userRepository.findByUser(user.getUser());
+            Optional<Usuario> searchUser = usuarioRepository.findByUsuario(usuario.getUsuario());
 
-            if ( (searchUser.isPresent()) && ( searchUser.get().getId() != user.getId()))
+            if ( (searchUser.isPresent()) && ( searchUser.get().getId() != usuario.getId()))
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists!", null);
 
-            user.setPassword(encryptPassword(user.getPassword()));
+            usuario.setSenha(encryptPassword(usuario.getSenha()));
 
-            return Optional.ofNullable(userRepository.save(user));
+            return Optional.ofNullable(usuarioRepository.save(usuario));
 
         }
 
@@ -57,7 +57,7 @@ public class UserService {
 
     }
 
-    public Optional<UserLogin> authenticateUser(Optional<UserLogin> userLogin) {
+    public Optional<UsuarioLogin> authenticateUser(Optional<UsuarioLogin> userLogin) {
 
         // Gera o Objeto de autenticação
         var credenciais = new UsernamePasswordAuthenticationToken(userLogin.get().getUser(), userLogin.get().getPassword());
@@ -69,14 +69,14 @@ public class UserService {
         if (authentication.isAuthenticated()) {
 
             // Busca os dados do usuário
-            Optional<User> user = userRepository.findByUser(userLogin.get().getUser());
+            Optional<Usuario> user = usuarioRepository.findByUsuario(userLogin.get().getUser());
 
             // Se o usuário foi encontrado
             if (user.isPresent()) {
 
                 // Preenche o Objeto usuarioLogin com os dados encontrados
                 userLogin.get().setId(user.get().getId());
-                userLogin.get().setName(user.get().getName());
+                userLogin.get().setName(user.get().getNome());
                 userLogin.get().setToken(generateToken(userLogin.get().getUser()));
                 userLogin.get().setPassword("");
 

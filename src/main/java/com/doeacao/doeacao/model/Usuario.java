@@ -13,28 +13,20 @@ import jakarta.persistence.Table;
 import java.util.List;
 
 
-import jakarta.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_users")
-public class User {
+@Table(name = "tb_usuarios")
+public class Usuario {
 	
 	
 	@Id
@@ -42,11 +34,11 @@ public class User {
 	private Long id;
 
 	@NotNull(message = "O Atributo Nome é Obrigatório!")
-	private String name;
+	private String nome;
 
 	@NotNull(message = "O Atributo Usuário é Obrigatório!")
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
-	private String user;
+	private String usuario;
 	
 	@CPF
 	private String cpf;
@@ -56,15 +48,15 @@ public class User {
 
 	@NotBlank(message = "O Atributo Senha é Obrigatório!")
 	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
-	private String password;
+	private String senha;
 
 	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String pic;
 	
-	private LocalDate birthDate;
+	private LocalDate nascimento;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("user")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
 	private List<Post> post;
 
 	
@@ -79,20 +71,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getCpf() {
@@ -111,12 +103,12 @@ public class User {
 		this.cnpj = cnpj;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public String getPic() {
@@ -127,12 +119,12 @@ public class User {
 		this.pic = pic;
 	}
 
-	public LocalDate getBirthDate() {
-		return birthDate;
+	public LocalDate getNascimento() {
+		return nascimento;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
+	public void setNascimento(LocalDate nascimento) {
+		this.nascimento = nascimento;
 	}
 
 	public List<Post> getPost() {

@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 
-import com.doeacao.doeacao.model.User;
+import com.doeacao.doeacao.model.Usuario;
 
 
-public class UserDetailsImpl implements UserDetails {
+public class UsuarioDetailsImpl implements UserDetails {
 
 private static final long serialVersionUID = 1L;
 	
@@ -18,13 +18,13 @@ private static final long serialVersionUID = 1L;
 	
 private List<GrantedAuthority> authorities;
 	
-	public UserDetailsImpl(User user) {
-		this.userName = user.getUser();
-		this.password = user.getPassword();
+	public UsuarioDetailsImpl(Usuario usuario) {
+		this.userName = usuario.getUsuario();
+		this.password = usuario.getSenha();
 		
 		
 	}
-	public UserDetailsImpl() {}
+	public UsuarioDetailsImpl() {}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -29,7 +29,7 @@ public class BasicSecurityConfig {
 	
 	@Bean
 	UserDetailsService userDetailsService() {
-		return new UserDetailsServiceImpl();
+		return new UsuarioDetailsServiceImpl();
 	}
 	
 	@Bean

@@ -53,7 +53,7 @@ public class Post {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("post")
-	private User user;
+	private Usuario usuario;
 
 
 	//Getters and Setters;
@@ -137,13 +137,13 @@ public class Post {
 	}
 
 
-	public User getUser() {
-		return user;
+	public Usuario getUser() {
+		return usuario;
 	}
 
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	

@@ -1,8 +1,6 @@
 package com.doeacao.doeacao.model;
 
-import java.time.LocalDate;
-
-public class UserLogin {
+public class UsuarioLogin {
 
     private Long id;
     private String name;

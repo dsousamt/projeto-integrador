@@ -8,8 +8,6 @@ public class UserLogin {
     private String name;
     private String user;
     private String password;
-    private String pic;
-    private LocalDate birthDate;
     private String token;
 
     public Long getId() {
@@ -44,14 +42,6 @@ public class UserLogin {
         this.password = password;
     }
 
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
-    }
-
     public String getToken() {
         return token;
     }
@@ -59,12 +49,4 @@ public class UserLogin {
     public void setToken(String token) {
         this.token = token;
     }
-
-	public LocalDate getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
-	}
 }
